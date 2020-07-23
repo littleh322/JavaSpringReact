@@ -3,18 +3,18 @@ package com.littleh322.springboot.springboot.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.littleh322.springboot.springboot.modal.Employee;
-
-import org.hibernate.query.Query;
-import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-	@PersistenceContext
+	@Autowired
 	private EntityManager entityManager;
 	
 	@Override
