@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Container, CssBaseline, makeStyles, Theme, Avatar, Typography, Grid, TextField, Button } from '@material-ui/core';
 import GroupIcon from '@material-ui/icons/Group';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme: Theme) => ({
     paper: {
@@ -14,15 +16,25 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: theme.palette.secondary.main
     },
     form: {
-
-    },
-    submit:{
-
-    },
-    textField: {
-
-    }
+        width: "100%", // Fix IE 11 issue.
+        marginTop: theme.spacing(3)
+      },
+      submit: {
+        margin: theme.spacing(3, 0, 2)
+      },
+      textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: "100%"
+      }
 }));
+
+export type ToInput = {
+    name:string;
+    department: string;
+    gender: string;
+    dob: Date;
+}
 
 const AddEmployee = () => {
     const classes = useStyles();
@@ -31,15 +43,43 @@ const AddEmployee = () => {
     const [department, setDepartment] = useState<string>("");
     const [gender, setGender] = useState<string>("");
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+    const [message, setMessage] = useState<string>("Nothing saved in the session");
 
     const handleNameChange = (e: any) => setName(e.target.value);
     const handleDepartmentChange = (e: any) => setDepartment(e.target.value);
     const handleGenderChange = (e: any) => setGender(e.target.value);
     const handleDateChange = (date: any) => setSelectedDate(date);
     
-    const handleSubmit = () => {
-        
+    async function sampleFunc(toInput: any) {
+        const response = await fetch("/api/employee", {
+          method: "POST", 
+          mode: "cors",
+          cache: "no-cache", 
+          credentials: "same-origin", 
+          headers: {
+            "Content-Type": "application/json"
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", 
+          referrerPolicy: "no-referrer", 
+          body: JSON.stringify(toInput)
+        });
+        let body = await response.json();
+        console.log(body.id);
+        setMessage(body.id ? "Data sucessfully updated" : "Data updation failed");
+      }
+
+    const handleSubmit = (variables :any) => {
+        console.log(moment(selectedDate).local().format('YYYY-MM-DD'));
+        const toInput = {name, department, gender, dob: moment(selectedDate).local().format('YYYY-MM-DD')};
+        sampleFunc(toInput);
+        setName("");
+        setDepartment("");
+        setGender("");
     }
+
+    if(firstLoad)
+        setLoad(false);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -105,15 +145,24 @@ const AddEmployee = () => {
                                 onChange={handleDateChange}
                             />
                         </Grid>
-                        <Button
+                    </Grid>
+                    <Button
                          fullWidth
                          variant="contained"
                          color="primary"
                          className={classes.submit}
                          onClick={handleSubmit}
-                        >Save</Button>
+                        >Save
+                    </Button>
+                    <Grid container justify="center">
+                        <Grid item>
+                            <Link to="/view">View Employee Records</Link>
+                        </Grid>
                     </Grid>
                 </form>
+                <Typography style={{margin: 7}} variant="body1">
+                    Status: {message}
+                </Typography>
             </div>
         </Container>
     )

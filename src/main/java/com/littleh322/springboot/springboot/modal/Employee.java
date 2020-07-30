@@ -1,6 +1,7 @@
 package com.littleh322.springboot.springboot.modal;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,11 +32,12 @@ public class Employee {
 
 	@Override
 	public String toString() {
+		String formatted = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(dob);
 		StringBuilder sb = new StringBuilder();
 		sb.append("Employee [id=").append(id)
 		.append(", name=").append(name)
 		.append(", department=").append(department)
-		.append(", dob=").append(dob)
+		.append(", dob=").append(formatted)
 		.append(", gender=").append(gender).append("]");
 		return sb.toString();
 	}
