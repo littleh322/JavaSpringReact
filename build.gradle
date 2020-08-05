@@ -26,6 +26,7 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.1.RELEASE'
 	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
 	/*....May need this later....*/
 	/*compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.1.RELEASE'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'*/
