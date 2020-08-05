@@ -1,10 +1,37 @@
-apply plugin: 'java'
+plugins {
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.littleh322.springboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    compile "joda-time:joda-time:2.2"
-    testCompile "junit:junit:4.12"
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+	/*Java Persitence API (JPA) / Hibernate and Postgres imports are necessary*/
+	/*Hibernate is responsible for mapping Java classes/datatypes to database tables/SQL types */
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
+	/*I'm assuming the Postgress import will provide the drivers needed to run the database */
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.1.RELEASE'
+	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
+	/*....May need this later....*/
+	/*compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.1.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'*/
+}
+
+test {
+	useJUnitPlatform()
 }
