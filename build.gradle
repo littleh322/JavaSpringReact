@@ -27,10 +27,14 @@ dependencies {
 	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
+	compile group: 'io.crnk', name: 'crnk-core', version: '2.5.20180326220647'
 	/*....May need this later....*/
 	/*compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.1.RELEASE'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'*/
-}
+	
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.16.1'
+	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
+	}
 
 test {
 	useJUnitPlatform()
