@@ -4,11 +4,10 @@
 Git project is meant for practicing Java Spring Boot and building a React UI for API Server integration.
 The project uses [Gradle](https://docs.gradle.org/current/userguide/what_is_gradle.html) build automation tool.
 
--> center text..? <-
+![EmployeeDirectory1](screenshots/employee_directory1.png) 
 
--> ![EmployeeDirectory1](screenshots/employee_directory1.png) <-
+![EmployeeDirectory2](screenshots/employee_directory2.png)
 
--> ![EmployeeDirectory2](screenshots/employee_directory2.png) <-
 ### Set Up:
 Use Docker (Linux or "For Windows") to stand up container for POSTGRES database:
 
