@@ -14,7 +14,7 @@ import com.littleh322.springboot.springboot.modal.Employee;
 
 @SpringBootTest
 @RunWith(Parameterized.class)
-public class SpringbootApplicationTests2 {
+public class ParameterizedTestWithJSON {
 	private static final String PATH_TO_JSON = "JSONFileToTest";
 
 	// ---- Example ------//
@@ -29,7 +29,7 @@ public class SpringbootApplicationTests2 {
 
 	private final Employee employee;
 
-	public SpringbootApplicationTests2(Employee employee) {
+	public ParameterizedTestWithJSON(Employee employee) {
 		this.employee = employee;
 	}
 
