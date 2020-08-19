@@ -1,13 +1,19 @@
 package com.littleh322.springboot.springboot;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.littleh322.springboot.springboot.modal.Employee;
 
 public class ObjectToJson {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println(getEmployeeAsString(new FakeEmployee().getFakeEmployee()));
+
+		String filePath = "c:/source/littleh322/JavaSpringReact/src/test/java/com/littleh322/springboot/springboot/employees.json";
+		Employee[] employees = convertJSONToEmployees(filePath);
+		System.out.println("got it! size: " + employees.length);
 	}
 
 	public static String getEmployeeAsString(Employee emp) {
@@ -32,5 +38,32 @@ public class ObjectToJson {
 		emp.setDob(DateUtils.generateRandomDate());
 		// Return the object
 		return emp;
+	}
+
+	public static Employee[] convertJSONToEmployees(String filePathToJson) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = readFileAsString(filePathToJson);
+		System.out.println("Deserializing JSON to Object:");
+		Employee[] employees = mapper.readValue(jsonStr, Employee[].class);
+		for (Employee employee : employees) {
+			System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment()
+					+ ", " + employee.getDob() + ", " + employee.getGender() + " }");
+		}
+		return employees;
+	}
+
+	public static String readFileAsString(String fileName) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(fileName));
+		StringBuilder stringBuilder = new StringBuilder();
+		String line = null;
+		String ls = System.getProperty("line.separator");
+		while ((line = reader.readLine()) != null) {
+			stringBuilder.append(line);
+			stringBuilder.append(ls);
+		}
+		// delete the last new line separator
+		stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		reader.close();
+		return stringBuilder.toString();
 	}
 }
