@@ -3,7 +3,10 @@ package com.littleh322.springboot.springboot;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.littleh322.springboot.springboot.modal.Employee;
 
@@ -12,8 +15,8 @@ public class ObjectToJson {
 		System.out.println(getEmployeeAsString(new FakeEmployee().getFakeEmployee()));
 
 		String filePath = "c:/source/littleh322/JavaSpringReact/src/test/java/com/littleh322/springboot/springboot/employees.json";
-		Employee[] employees = convertJSONToEmployees(filePath);
-		System.out.println("got it! size: " + employees.length);
+//		Employee employees = convertJSONToEmployees(filePath);
+		System.out.println("returning employees!");
 	}
 
 	public static String getEmployeeAsString(Employee emp) {
@@ -40,16 +43,27 @@ public class ObjectToJson {
 		return emp;
 	}
 
-	public static Employee[] convertJSONToEmployees(String filePathToJson) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
+	public static Collection<Employee> convertJSONToEmployees(String filePathToJson) throws IOException {
 		String jsonStr = readFileAsString(filePathToJson);
-		System.out.println("Deserializing JSON to Object:");
-		Employee[] employees = mapper.readValue(jsonStr, Employee[].class);
-		for (Employee employee : employees) {
+		System.out.println("Deserializing JSON to Object....");
+		Collection<Employee> readValues = new ObjectMapper().readValue(jsonStr,
+				new TypeReference<Collection<Employee>>() {
+				});
+		for (Employee employee : readValues) {
 			System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment()
 					+ ", " + employee.getDob() + ", " + employee.getGender() + " }");
 		}
-		return employees;
+		return readValues;
+	}
+
+	public static Employee convertJSONToEmployee(String filePathToJson) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = readFileAsString(filePathToJson);
+		System.out.println("Deserializing JSON to Object:");
+		Employee employee = mapper.readValue(jsonStr, Employee.class);
+		System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment() + ", "
+				+ employee.getDob() + ", " + employee.getGender() + " }");
+		return employee;
 	}
 
 	public static String readFileAsString(String fileName) throws IOException {
