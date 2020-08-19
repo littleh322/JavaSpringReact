@@ -33,6 +33,7 @@ public class SpringbootApplicationTests {
 		return Arrays.asList(allEmployees);
 	}
 
+	private final Employee employee;
 	private final int id;
 	private final String name;
 	private final String department;

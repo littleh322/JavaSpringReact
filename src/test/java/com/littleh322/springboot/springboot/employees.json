@@ -1,0 +1,30 @@
+[
+    {
+        "id": 4,
+        "name": "Andy Ayres",
+        "department": "Sales",
+        "dob": "1993-09-11",
+        "gender": "Male"
+    },
+    {
+        "id": 5,
+        "name": "John Grillo",
+        "department": "Management",
+        "dob": "1993-04-29",
+        "gender": "Male"
+    },
+    {
+        "id": 3,
+        "name": "Joseph Haberberger",
+        "department": "IT",
+        "dob": "1993-06-10",
+        "gender": "Male"
+    },
+    {
+        "id": 6,
+        "name": "Autumn Lange",
+        "department": "Science",
+        "dob": "2020-07-28",
+        "gender": "Female"
+    }
+]
