@@ -37,12 +37,13 @@ public class ParameterizedTestWithJSON {
 	public static void beforeClass() {
 		System.out.println("");
 		System.out.println("RUNNING THE CLASS WITH GIVEN JSON DATA:");
+		System.out.println("");
 	}
 
 	@Test
-	public void shouldReturnCorrectName() {
-		System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment() + ", "
-				+ employee.getDob() + ", " + employee.getGender() + " }");
+	public void shouldReturnCorrectData() {
+		System.out.println("shouldReturnCorrectData: { " + employee.getId() + ", " + employee.getName() + ", "
+				+ employee.getDepartment() + ", " + employee.getDob() + ", " + employee.getGender() + " }");
 	}
 
 }
