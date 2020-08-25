@@ -12,3 +12,4 @@ gradle-app.setting
 !gradle-wrapper.jar
 
 # Maven
+**/test-output/*

@@ -1,50 +1,27 @@
 package com.littleh322.springboot.springboot.tests;
 
-import java.io.IOException;
-import java.util.Collection;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-import com.littleh322.springboot.springboot.ObjectToJson;
+import com.littleh322.springboot.springboot.DataProviderSource;
+import com.littleh322.springboot.springboot.SpringbootApplication;
 import com.littleh322.springboot.springboot.modal.Employee;
 
-@SpringBootTest
-@RunWith(Parameterized.class)
+@SpringBootTest(classes = SpringbootApplication.class)
 public class ParameterizedTestWithJSON {
-	private static final String PATH_TO_JSON = "JSONFileToTest";
-
-	// ---- Example ------//
-	// new Object[][] { { 3, "Joseph Haberberger", "IT", "1993-06-10", "Male" },
-	// { 4, "Andy Ayres", "Sales", "1993-09-11", "Male" } };
-
-	@Parameters
-	public static Collection<Employee> data() throws IOException {
-		return ObjectToJson.convertJSONToEmployees(System.getProperties().getProperty(PATH_TO_JSON,
-				"c:/source/littleh322/JavaSpringReact/src/test/resources/com/littleh322/springboot/springboot/employees.json"));
-	}
-
-	private final Employee employee;
-
-	public ParameterizedTestWithJSON(Employee employee) {
-		this.employee = employee;
-	}
-
+	
 	@BeforeClass
-	public static void beforeClass() {
-		System.out.println("");
-		System.out.println("RUNNING THE CLASS WITH GIVEN JSON DATA:");
-		System.out.println("");
+	public static void setup() {
+		System.out.println("\r\nRUNNING THE CLASS WITH GIVEN JSON DATA:\r\n");
 	}
 
-	@Test
-	public void shouldReturnCorrectData() {
-		System.out.println("shouldReturnCorrectData: { " + employee.getId() + ", " + employee.getName() + ", "
-				+ employee.getDepartment() + ", " + employee.getDob() + ", " + employee.getGender() + " }");
+	@Test(dataProvider = "employeeData", dataProviderClass = DataProviderSource.class)
+	public void shouldReturnCorrectData(Employee[] employees) {
+		for (Employee employee : employees) {
+			System.out.println("shouldReturnCorrectData: { " + employee.getId() + ", " + employee.getName() + ", "
+					+ employee.getDepartment() + ", " + employee.getDob() + ", " + employee.getGender() + " }");
+		}
 	}
 
 }

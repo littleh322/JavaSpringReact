@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +40,27 @@ public class ObjectToJson {
 		emp.setDob(DateUtils.generateRandomDate());
 		// Return the object
 		return emp;
+	}
+
+	public static Object[][] convertPractices(String filePathToJson) throws IOException {
+		String jsonStr = readFileAsString(filePathToJson);
+		System.out.println("Deserializing JSON to Object....");
+		Employee[] readValues = new ObjectMapper().readValue(jsonStr, Employee[].class);
+		for (Employee employee : readValues) {
+			System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment()
+					+ ", " + employee.getDob() + ", " + employee.getGender() + " }");
+		}
+		return new Object[][] { readValues };
+	}
+
+	public static Object[] convertPractice(String filePathToJson) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = readFileAsString(filePathToJson);
+		System.out.println("Deserializing JSON to Object:");
+		Employee employee = mapper.readValue(jsonStr, Employee.class);
+		System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment() + ", "
+				+ employee.getDob() + ", " + employee.getGender() + " }\r\n");
+		return new Object[] { employee };
 	}
 
 	public static Collection<Employee> convertJSONToEmployees(String filePathToJson) throws IOException {

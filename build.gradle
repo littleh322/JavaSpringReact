@@ -13,37 +13,35 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation(
-            'junit:junit:4.12',
-            'org.junit.jupiter:junit-jupiter-api:5.4.2',
-            'org.springframework.boot:spring-boot-starter-test'
-    )
-    testRuntime(
-            'org.junit.jupiter:junit-jupiter-engine:5.4.2',
-            'org.junit.vintage:junit-vintage-engine:5.4.2'
-    )
+	implementation 'org.springframework.boot:spring-boot-starter' /*Runs Spring Boot*/
 	
+	/************** COMPILE NOTES **************/
 	/*Java Persitence API (JPA) / Hibernate and Postgres imports are necessary*/
 	/*Hibernate is responsible for mapping Java classes/datatypes to database tables/SQL types */
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
 	/*I'm assuming the Postgress import will provide the drivers needed to run the database */
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.1.RELEASE'
 	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.10.Final'
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
-	compile group: 'io.crnk', name: 'crnk-core', version: '2.5.20180326220647'
-	/*....May need this later....*/
-	/*compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.1.RELEASE'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.4.RELEASE', ext: 'pom'*/
-	
-	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.16.1'
+	compile group: 'io.rest-assured', name: 'json-path', version: '4.3.0' /*Needed for Rest Assured JSON*/
+	compile group: 'io.rest-assured', name: 'xml-path', version: '4.3.0'  /*Needed for Rest Assured JSON*/
+
+
+	/************** TEST COMPILE NOTES **************/
+	/*JUnit 5 - Jupiter*/
 	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
-	compile group: 'io.rest-assured', name: 'json-path', version: '4.3.0'
-	compile group: 'io.rest-assured', name: 'xml-path', version: '4.3.0'
-	testCompile group: 'junit', name: 'junit', version: '4.12'
-	}
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.16.1'
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.2'
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.2'
+	testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.6.2' /*Needed for JUnit 5 Parameterized Tests*/
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
+	testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+	
+	/************** MAYBE USE THIS LATER **************/
+	/* compile group: 'io.crnk', name: 'crnk-core', version: '2.5.20180326220647' */
+}
 
 test {
 	useJUnitPlatform()
