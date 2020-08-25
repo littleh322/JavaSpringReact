@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Spring Boot API Testing" verbose="1">
+	<test name="Tests">
+		<classes>
+			<class
+				name="com.littleh322.springboot.springboot.tests.ParameterizedTestWithJSON" />
+		</classes>
+	</test>
+</suite>

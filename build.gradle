@@ -12,6 +12,15 @@ repositories {
 	mavenCentral()
 }
 
+defaultTasks 'clean', 'test'
+
+test {
+		useTestNG {
+	    suites 'src/main/resources/testng.xml'
+	}
+	testLogging.showStandardStreams = true
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter' /*Runs Spring Boot*/
 	
@@ -28,7 +37,6 @@ dependencies {
 	compile group: 'io.rest-assured', name: 'json-path', version: '4.3.0' /*Needed for Rest Assured JSON*/
 	compile group: 'io.rest-assured', name: 'xml-path', version: '4.3.0'  /*Needed for Rest Assured JSON*/
 
-
 	/************** TEST COMPILE NOTES **************/
 	/*JUnit 5 - Jupiter*/
 	testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
@@ -41,8 +49,4 @@ dependencies {
 	
 	/************** MAYBE USE THIS LATER **************/
 	/* compile group: 'io.crnk', name: 'crnk-core', version: '2.5.20180326220647' */
-}
-
-test {
-	useJUnitPlatform()
 }
