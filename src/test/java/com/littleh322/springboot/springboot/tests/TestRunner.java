@@ -1,10 +1,8 @@
-package com.littleh322.springboot.springboot;
+package com.littleh322.springboot.springboot.tests;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-
-import com.littleh322.springboot.tests.ParameterizedTestWithJSON;
 
 public class TestRunner {
 	public static void main(String[] args) {

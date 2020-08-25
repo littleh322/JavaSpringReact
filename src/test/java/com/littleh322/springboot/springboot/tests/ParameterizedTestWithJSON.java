@@ -1,4 +1,4 @@
-package com.littleh322.springboot.tests;
+package com.littleh322.springboot.springboot.tests;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -25,7 +25,7 @@ public class ParameterizedTestWithJSON {
 	@Parameters
 	public static Collection<Employee> data() throws IOException {
 		return ObjectToJson.convertJSONToEmployees(System.getProperties().getProperty(PATH_TO_JSON,
-				"c:/source/littleh322/JavaSpringReact/src/test/java/com/littleh322/springboot/springboot/employees.json"));
+				"c:/source/littleh322/JavaSpringReact/src/test/resources/com/littleh322/springboot/springboot/employees.json"));
 	}
 
 	private final Employee employee;

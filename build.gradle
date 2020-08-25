@@ -16,7 +16,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation(
             'junit:junit:4.12',
-            'org.junit.jupiter:junit-jupiter-api:5.4.2'
+            'org.junit.jupiter:junit-jupiter-api:5.4.2',
+            'org.springframework.boot:spring-boot-starter-test'
     )
     testRuntime(
             'org.junit.jupiter:junit-jupiter-engine:5.4.2',
