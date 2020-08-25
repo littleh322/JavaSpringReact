@@ -1,4 +1,4 @@
-package com.littleh322.springboot.springboot;
+package com.littleh322.springboot.tests;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -10,6 +10,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.littleh322.springboot.springboot.ObjectToJson;
 import com.littleh322.springboot.springboot.modal.Employee;
 
 @SpringBootTest
