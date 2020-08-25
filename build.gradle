@@ -14,9 +14,14 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+    testImplementation(
+            'junit:junit:4.12',
+            'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    )
+    testRuntime(
+            'org.junit.jupiter:junit-jupiter-engine:5.4.2',
+            'org.junit.vintage:junit-vintage-engine:5.4.2'
+    )
 	
 	/*Java Persitence API (JPA) / Hibernate and Postgres imports are necessary*/
 	/*Hibernate is responsible for mapping Java classes/datatypes to database tables/SQL types */
