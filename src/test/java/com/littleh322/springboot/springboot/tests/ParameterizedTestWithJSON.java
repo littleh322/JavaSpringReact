@@ -23,14 +23,9 @@ public class ParameterizedTestWithJSON {
 	public class JsonDataObject {
 
 		private String jsonStr;
-		private String jsonAsString;
 
 		public JsonDataObject(String fileName) throws IOException {
 			this.jsonStr = readFileJsonAsString(fileName);
-		}
-
-		public String getJsonAsString() {
-			return jsonAsString;
 		}
 
 		public Object[][] buildJsonObject() throws JsonMappingException, JsonProcessingException {
