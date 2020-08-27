@@ -1,5 +1,7 @@
 package com.littleh322.springboot.springboot.tests;
 
+import static org.testng.Assert.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,12 +31,7 @@ public class ParameterizedTestWithJSON {
 		}
 
 		public Object[][] buildJsonObject() throws JsonMappingException, JsonProcessingException {
-			System.out.println("Deserializing JSON to Object....");
 			Employee[] readValues = new ObjectMapper().readValue(jsonStr, Employee[].class);
-			for (Employee employee : readValues) {
-				System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment()
-						+ ", " + employee.getDob() + ", " + employee.getGender() + " }");
-			}
 			return new Object[][] { readValues };
 		}
 
@@ -63,12 +60,22 @@ public class ParameterizedTestWithJSON {
 	@BeforeClass
 	public static void setup() {
 		System.out.println("\r\nBEFORE THE CLASS: BUILD THE EMLPOYEE DATA\r\n");
+//		RestAssured.port = Integer.valueOf(8080);
+//		RestAssured.basePath = "/employee/";
+//		RestAssured.baseURI = "http://localhost";
 	}
 
 	@Test(dataProvider = "employeeData")
 	public void shouldReturnCorrectData(Employee[] employees) {
+		System.out.println("shouldReturnCorrectData:");
+		assertEquals(employees.length, 4);
+	}
+
+	@Test(dataProvider = "employeeData")
+	public void getEmployeeMatch(Employee[] employees) {
+		System.out.println("getEmployeeMatch:");
 		for (Employee employee : employees) {
-			System.out.println("shouldReturnCorrectData: { " + employee.getId() + ", " + employee.getName() + ", "
+			System.out.println("testing: { " + employee.getId() + ", " + employee.getName() + ", "
 					+ employee.getDepartment() + ", " + employee.getDob() + ", " + employee.getGender() + " }");
 		}
 	}
