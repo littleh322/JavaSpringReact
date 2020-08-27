@@ -10,13 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.littleh322.springboot.springboot.modal.Employee;
 
 public class ObjectToJson {
-	public static void main(String[] args) throws IOException {
-		System.out.println(getEmployeeAsString(new FakeEmployee().getFakeEmployee()));
-
-		String filePath = "c:/source/littleh322/JavaSpringReact/src/test/java/com/littleh322/springboot/springboot/employees.json";
-//		Employee employees = convertJSONToEmployees(filePath);
-		System.out.println("returning employees!");
-	}
 
 	public static String getEmployeeAsString(Employee emp) {
 		// Insert the data into the object
@@ -42,27 +35,8 @@ public class ObjectToJson {
 		return emp;
 	}
 
-	public static Object[][] convertPractices(String filePathToJson) throws IOException {
-		String jsonStr = readFileAsString(filePathToJson);
-		System.out.println("Deserializing JSON to Object....");
-		Employee[] readValues = new ObjectMapper().readValue(jsonStr, Employee[].class);
-		for (Employee employee : readValues) {
-			System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment()
-					+ ", " + employee.getDob() + ", " + employee.getGender() + " }");
-		}
-		return new Object[][] { readValues };
-	}
-
-	public static Object[] convertPractice(String filePathToJson) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonStr = readFileAsString(filePathToJson);
-		System.out.println("Deserializing JSON to Object:");
-		Employee employee = mapper.readValue(jsonStr, Employee.class);
-		System.out.println("{ " + employee.getId() + ", " + employee.getName() + ", " + employee.getDepartment() + ", "
-				+ employee.getDob() + ", " + employee.getGender() + " }\r\n");
-		return new Object[] { employee };
-	}
-
+	/** moved to @{ParameterizedTestWithJSON.JsonDataObject} */
+	@Deprecated
 	public static Collection<Employee> convertJSONToEmployees(String filePathToJson) throws IOException {
 		String jsonStr = readFileAsString(filePathToJson);
 		System.out.println("Deserializing JSON to Object....");
@@ -76,6 +50,8 @@ public class ObjectToJson {
 		return readValues;
 	}
 
+	/** moved to @{ParameterizedTestWithJSON.JsonDataObject} */
+	@Deprecated
 	public static Employee convertJSONToEmployee(String filePathToJson) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonStr = readFileAsString(filePathToJson);
@@ -86,6 +62,8 @@ public class ObjectToJson {
 		return employee;
 	}
 
+	/** moved to @{ParameterizedTestWithJSON.JsonDataObject} */
+	@Deprecated
 	public static String readFileAsString(String fileName) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		StringBuilder stringBuilder = new StringBuilder();
