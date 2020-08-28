@@ -11,6 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.littleh322.springboot.springboot.SpringbootApplication;
+import com.littleh322.springboot.springboot.base.BaseTest;
 import com.littleh322.springboot.springboot.modal.Employee;
 
 /**
