@@ -21,3 +21,9 @@ Connection Info:
 - **URL**: jdbc:postgresql://localhost:5432/postgres
 - **username**: postgres
 - **password**: postgres
+
+Added [CircleCI](https://app.circleci.com/pipelines/github/littleh322) continuous integration tool.
+
+This will eventually show all of the tests running in general.
+
+It needs to stand up a POSTGRES_DB in front. Haven't figured that out yet. :/
