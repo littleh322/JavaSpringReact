@@ -4,8 +4,6 @@
 		<classes>
 			<class
 				name="com.littleh322.springboot.springboot.tests.ParameterizedEmployees" />
-			<!--<class name="com.littleh322.springboot.springboot.tests.ExampleRaceCarCircuitTest" 
-				/> -->
 		</classes>
 	</test>
 </suite>

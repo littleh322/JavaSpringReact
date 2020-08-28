@@ -1,4 +1,4 @@
-package com.littleh322.springboot.springboot.tests;
+package com.littleh322.springboot.springboot;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
