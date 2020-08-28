@@ -10,9 +10,9 @@ jobs: # a collection of steps
     docker: # run the steps with Docker
       - image: circleci/openjdk:11.0.3-jdk-stretch # ...with this image as the primary container; this is where all `steps` will run
         environment:
-          TEST_DATABASE_URL: postgresql://root@localhost/circle_test
+          TEST_DATABASE_URL: postgresql://root@localhost/postgres
           POSTGRES_USER: postgres
-          POSTGRES_DB: circle_test
+          POSTGRES_DB: postgres
           POSTGRES_PASSWORD: ""
       - image: circleci/postgres:9.6.5-alpine-ram
     steps: # a collection of executable commands
@@ -29,12 +29,21 @@ jobs: # a collection of steps
           psql \
           -h localhost \
           -p 5432 \
-          -d $TEST_DATABASE_URL
-      - run:
-          name: install dockerize
-          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-          environment:
-            DOCKERIZE_VERSION: v0.3.0
+          -d $TEST_DATABASE_URL \
+          -c "CREATE TABLE tb_emp (id serial,name varchar(255),gender varchar(255),department varchar(255),dob date);"
+      - run: |
+          psql \
+          -d $TEST_DATABASE_URL \
+          -c "INSERT INTO tb_emp(id,name,gender,department,dob) VALUES (4,"Andy Ayres","Sales","1993-09-11","Male");INSERT INTO tb_emp(id,name,gender,department,dob) VALUES (5,"John Grillo","Management","1993-04-29","Male");INSERT INTO tb_emp(id,name,gender,department,dob) VALUES (3,"Joseph Haberberger","IT","1993-06-10","Male");INSERT INTO tb_emp(id,name,gender,department,dob) VALUES (6,"Autumn Lange","Science","2020-07-28","Female");"
+      - run: |
+          psql \
+          -d $TEST_DATABASE_URL \
+          -c "SELECT * from tb_emp"
+	    - run:
+	      name: install dockerize
+	      command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+	      environment:
+	      	DOCKERIZE_VERSION: v0.3.0
       - run:
           name: Wait for db
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
