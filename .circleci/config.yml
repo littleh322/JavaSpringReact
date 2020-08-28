@@ -25,9 +25,6 @@ jobs: # a collection of steps
       - run: sudo apt-get update
       - run: sudo apt-get install postgresql-client-9.6
       - run: whoami
-      - run:
-        name: Set up postgres database
-        command: sudo psql -h localhost -p 5433 -c 'create database survey_builder_test'
       - run: |
           psql \
           -h localhost \
