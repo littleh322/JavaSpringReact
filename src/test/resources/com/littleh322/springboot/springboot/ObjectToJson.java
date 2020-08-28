@@ -12,8 +12,6 @@ import com.littleh322.springboot.springboot.modal.Employee;
 public class ObjectToJson {
 
 	public static String getEmployeeAsString(Employee emp) {
-		// Insert the data into the object
-		emp = getObjectData(emp);
 		// Creating Object of ObjectMapper define in Jakson Api
 		ObjectMapper jsonObect = new ObjectMapper();
 		try {
@@ -33,6 +31,19 @@ public class ObjectToJson {
 		emp.setDob(DateUtils.generateRandomDate());
 		// Return the object
 		return emp;
+	}
+
+	// Get the data to be inserted into the object
+	public static String getEmployeesAsString(Employee[] emps) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		for (int e = 0; e < emps.length; e++) {
+			sb.append(getEmployeeAsString(emps[e]));
+			if (e < emps.length - 1)
+				sb.append(",");
+		}
+		sb.append("]");
+		return sb.toString();
 	}
 
 	/** moved to @{ParameterizedTestWithJSON.JsonDataObject} */
