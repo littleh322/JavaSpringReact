@@ -38,7 +38,6 @@ dependencies {
 	compile group: 'org.codehaus.groovy', name: 'groovy-xml', version: '3.0.4' /*Needed for Spring Boot*/
 	compile group: 'io.rest-assured', name: 'json-path', version: '4.3.0' /*Needed for Rest Assured JSON*/
 	compile group: 'io.rest-assured', name: 'xml-path', version: '4.3.0'  /*Needed for Rest Assured JSON*/
-	
 
 	/************** TEST COMPILE NOTES **************/
 	/*JUnit 5 - Jupiter*/
@@ -49,6 +48,7 @@ dependencies {
 	testCompile group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.6.2' /*Needed for JUnit 5 Parameterized Tests*/
 	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
 	testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+	testCompile group: 'org.mock-server', name: 'mockserver-netty', version: '5.11.1'
 	
 	/************** MAYBE USE THIS LATER **************/
 	/* compile group: 'io.crnk', name: 'crnk-core', version: '2.5.20180326220647' */
