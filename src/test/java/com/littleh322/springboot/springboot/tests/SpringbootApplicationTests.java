@@ -1,4 +1,4 @@
-package com.littleh322.springboot.springboot;
+package com.littleh322.springboot.springboot.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
