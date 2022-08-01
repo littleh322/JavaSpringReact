@@ -1,4 +1,4 @@
-package com.littleh322.springboot.springboot;
+package com.littleh322.springboot.springboot.tests;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
