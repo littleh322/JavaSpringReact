@@ -1,5 +1,6 @@
 # Java
 *.class
+.DS_Store
 
 # IDEs
 # Eclipse
