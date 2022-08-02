@@ -23,7 +23,7 @@ import com.littleh322.springboot.springboot.modal.Employee;
  */
 @SpringBootTest(classes = SpringbootApplication.class)
 public class ParameterizedEmployees extends BaseTest {
-	private final String PATH_TO_JSON = "JSONFileToTest";
+	private final String PATH_TO_JSON = "src/test/resources/com/littleh322/springboot/springboot/employees.json";
 
 	@DataProvider(name = "employeeData")
 	public Object[][] getEmployeeData() throws IOException {

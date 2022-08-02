@@ -33,7 +33,7 @@ export type ToInput = {
     name:string;
     department: string;
     gender: string;
-    dob: Date;
+    dob: string;
 }
 
 const AddEmployee = () => {
@@ -154,7 +154,7 @@ const AddEmployee = () => {
                          onClick={handleSubmit}
                         >Save
                     </Button>
-                    <Grid container justify="center">
+                    <Grid container justifyContent="center">
                         <Grid item>
                             <Link to="/view">View Employee Records</Link>
                         </Grid>
