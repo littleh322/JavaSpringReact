@@ -3,7 +3,7 @@
 	<test name="Tests">
 		<classes>
 			<class
-				name="com.littleh322.springboot.springboot.tests.ParameterizedEmployees" />
+				name="com.littleh322.springboot.springboot.base.BaseTest" />
 		</classes>
 	</test>
 </suite>
