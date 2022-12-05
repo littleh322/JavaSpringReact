@@ -4,6 +4,9 @@
 
 # IDEs
 # Eclipse
+# IntelliJ
+.idea
+/coverage
 
 # Build Tools
 # Gradle

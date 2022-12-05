@@ -48,7 +48,7 @@ const AddEmployee = () => {
     const handleNameChange = (e: any) => setName(e.target.value);
     const handleDepartmentChange = (e: any) => setDepartment(e.target.value);
     const handleGenderChange = (e: any) => setGender(e.target.value);
-    const handleDateChange = (date: any) => setSelectedDate(date);
+    const handleDateChange = (e: any) => setSelectedDate(e.target.value);
     
     async function sampleFunc(toInput: any) {
         const response = await fetch("/api/employee", {
